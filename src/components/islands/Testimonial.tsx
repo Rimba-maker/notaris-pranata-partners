@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { Quotes } from '@phosphor-icons/react';
+import { QuotesIcon } from '@phosphor-icons/react';
 
 const testimonials = [
   {
@@ -65,7 +65,7 @@ export default function Testimonial() {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               className="text-center"
             >
-              <Quotes
+              <QuotesIcon
                 size={28}
                 weight="fill"
                 className="mx-auto text-accent-gold-soft"

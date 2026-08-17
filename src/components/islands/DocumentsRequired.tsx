@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { CheckCircle } from '@phosphor-icons/react';
+import { CheckCircleIcon } from '@phosphor-icons/react';
 import { staggerContainer, fadeUp } from '../../lib/motion';
 
 const tabs = [
@@ -100,7 +100,7 @@ export default function DocumentsRequired() {
           >
             {tabs[active].docs.map((doc) => (
               <motion.li key={doc} variants={fadeUp} className="flex items-start gap-2">
-                <CheckCircle
+                <CheckCircleIcon
                   size={18}
                   weight="light"
                   className="mt-0.5 shrink-0 text-accent-gold"
