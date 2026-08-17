@@ -1,0 +1,69 @@
+---
+const links = [
+  { href: '#tentang', label: 'Tentang' },
+  { href: '#layanan', label: 'Layanan' },
+  { href: '#biaya', label: 'Biaya' },
+  { href: '#tata-cara', label: 'Tata Cara' },
+  { href: '#kontak', label: 'Kontak' },
+];
+---
+
+<header
+  id="site-nav"
+  data-scrolled="false"
+  class="fixed inset-x-0 top-0 z-50 h-16 border-b border-transparent bg-canvas-dark transition-colors duration-300 data-[scrolled=true]:bg-canvas data-[scrolled=true]:border-hairline"
+>
+  <div class="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
+    <a href="#" class="flex items-center gap-2 font-display text-lg text-on-dark [[data-scrolled=true]_&]:text-ink">
+      <span
+        class="flex h-8 w-8 items-center justify-center rounded-full bg-primary font-display text-xs text-accent-gold"
+        aria-hidden="true"
+      >
+        P&amp;P
+      </span>
+      <span>Pranata &amp; Partners</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Navigasi utama">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="font-sans text-sm text-on-dark transition-opacity hover:opacity-70 [[data-scrolled=true]_&]:text-ink"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href="#kontak"
+      id="nav-cta"
+      class="rounded-sm bg-canvas px-6 py-2 font-mono text-sm font-medium uppercase tracking-[0.08em] text-ink transition-colors data-[scrolled=true]:bg-primary data-[scrolled=true]:text-on-primary"
+      data-scrolled="false"
+    >
+      Buat Janji
+    </a>
+  </div>
+</header>
+
+<script>
+  // Nav switches from dark (over the hero) to light once the hero band scrolls
+  // past the fixed nav's height — watches the hero section itself, no scroll listener.
+  const nav = document.getElementById('site-nav');
+  const cta = document.getElementById('nav-cta');
+  const hero = document.getElementById('hero');
+
+  if (nav && cta && hero) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const scrolled = String(!entry.isIntersecting);
+        nav.dataset.scrolled = scrolled;
+        cta.dataset.scrolled = scrolled;
+      },
+      { rootMargin: '-64px 0px 0px 0px', threshold: 0 }
+    );
+    observer.observe(hero);
+  }
+</script>

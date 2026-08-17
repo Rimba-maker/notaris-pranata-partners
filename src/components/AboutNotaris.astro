@@ -1,0 +1,82 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const certifications = [
+  { icon: 'ph:seal-check', label: 'Diangkat Menkumham RI (SK No. AHU-XXX/2012)' },
+  { icon: 'ph:buildings', label: 'Anggota Ikatan Notaris Indonesia (INI)' },
+  { icon: 'ph:graduation-cap', label: 'S2 Magister Kenotariatan, Universitas Indonesia' },
+  { icon: 'ph:briefcase', label: 'Pengalaman 12+ tahun praktik' },
+];
+
+const team = [
+  { name: 'Andi Pranata, S.H., M.Kn.', role: 'Notaris & PPAT', seed: 'notaris-andi-pranata' },
+  { name: 'Tika Hartono, S.H., M.Kn.', role: 'Partner Notaris (bergabung 2020)', seed: 'notaris-tika-hartono' },
+  { name: 'Reza Wijaya, S.H.', role: 'Senior Legal Staff', seed: 'notaris-reza-wijaya' },
+];
+---
+
+<section id="tentang" class="bg-canvas py-section">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+      <div class="relative aspect-[3/4] overflow-hidden rounded-sm">
+        <img
+          src="https://picsum.photos/seed/notaris-office-interior/900/1200"
+          alt="Interior Kantor Notaris Pranata & Partners"
+          class="h-full w-full object-cover"
+          width="900"
+          height="1200"
+          loading="lazy"
+        />
+      </div>
+
+      <div>
+        <h2 class="font-display text-3xl text-ink md:text-4xl">Tentang Kami</h2>
+        <p class="mt-6 max-w-[65ch] text-base leading-relaxed text-body">
+          Kantor Notaris Pranata &amp; Partners didirikan oleh Bapak Andi
+          Pranata, S.H., M.Kn., notaris dengan pengalaman lebih dari 12 tahun
+          yang diangkat oleh Kementerian Hukum dan HAM RI pada tahun 2012.
+          Kantor kami melayani Jakarta Selatan dan sekitarnya, dengan
+          spesialisasi dalam akta keluarga, properti, dan korporasi.
+        </p>
+
+        <ul class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {
+            certifications.map((cert) => (
+              <li class="flex items-start gap-3">
+                <Icon name={cert.icon} class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
+                <span class="text-sm text-ink">{cert.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-20">
+      <h3 class="font-display text-2xl text-ink">Tim Kami</h3>
+      <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        {
+          team.map((member) => (
+            <div>
+              <div class="aspect-[3/4] overflow-hidden rounded-sm">
+                <img
+                  src={`https://picsum.photos/seed/${member.seed}/600/800`}
+                  alt={member.name}
+                  class="h-full w-full object-cover"
+                  width="600"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+              <p class="mt-4 font-display text-lg text-ink">{member.name}</p>
+              <p class="text-sm text-body">{member.role}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-6 text-sm text-body">
+        Didukung oleh 4 staf administratif untuk kelancaran proses akta Anda.
+      </p>
+    </div>
+  </div>
+</section>
