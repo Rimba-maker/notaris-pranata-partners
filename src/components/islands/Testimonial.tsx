@@ -47,7 +47,7 @@ export default function Testimonial() {
   return (
     <section className="bg-canvas py-section">
       <div className="mx-auto max-w-3xl px-6">
-        <h2 className="text-center font-display text-3xl text-ink md:text-4xl">
+        <h2 className="section-heading text-center">
           Apa Kata Klien Kami
         </h2>
 
@@ -55,6 +55,8 @@ export default function Testimonial() {
           className="relative mt-12 min-h-[220px]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
         >
           <AnimatePresence mode="wait">
             <motion.figure
@@ -89,10 +91,14 @@ export default function Testimonial() {
               onClick={() => setIndex(i)}
               aria-label={`Testimoni ${i + 1} dari ${testimonials.length}`}
               aria-current={i === index}
-              className={`h-1.5 w-6 rounded-full transition-colors ${
-                i === index ? 'bg-accent-gold' : 'bg-hairline'
-              }`}
-            />
+              className="p-2.5"
+            >
+              <span
+                className={`block h-1.5 w-6 rounded-full transition-colors ${
+                  i === index ? 'bg-accent-gold' : 'bg-hairline'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>
