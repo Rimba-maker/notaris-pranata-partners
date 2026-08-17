@@ -1,0 +1,77 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-canvas">
+  <div class="mx-auto max-w-7xl px-6 py-section">
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <p class="font-display text-lg text-ink">Pranata &amp; Partners</p>
+        <p class="mt-3 max-w-[30ch] text-sm text-body">
+          Profesional, terpercaya, melindungi hak hukum Anda.
+        </p>
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 inline-flex items-center gap-2 text-sm text-body transition-colors hover:text-ink"
+          aria-label="LinkedIn Kantor Notaris Pranata & Partners"
+        >
+          <Icon name="ph:linkedin-logo" class="h-5 w-5" />
+          LinkedIn
+        </a>
+      </div>
+
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-body">Navigasi</p>
+        <ul class="mt-4 space-y-2 text-sm text-ink">
+          <li><a href="#tentang" class="hover:text-accent-gold">Tentang</a></li>
+          <li><a href="#layanan" class="hover:text-accent-gold">Layanan</a></li>
+          <li><a href="#biaya" class="hover:text-accent-gold">Biaya</a></li>
+          <li><a href="#tata-cara" class="hover:text-accent-gold">Tata Cara</a></li>
+          <li><a href="#kontak" class="hover:text-accent-gold">Kontak</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-body">Kontak</p>
+        <ul class="mt-4 space-y-2 text-sm text-ink">
+          <li>Jl. Kemang Selatan VIII No. 88, Jakarta Selatan</li>
+          <li>
+            <a href="https://wa.me/6281234567890" class="hover:text-accent-gold">
+              WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.08em] text-body">Lisensi</p>
+        <ul class="mt-4 space-y-2 text-sm text-ink">
+          <li>SK Menkumham RI</li>
+          <li>Anggota INI (Ikatan Notaris Indonesia)</li>
+          <li>Terdaftar PPAT</li>
+        </ul>
+        <p class="mt-4 max-w-[32ch] text-xs leading-relaxed text-body">
+          Semua konsultasi dan dokumen klien dilindungi kerahasiaan profesi
+          notaris (Pasal 16 UUJN).
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col gap-4 border-t border-hairline pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-xs text-body">
+        &copy; {currentYear} Kantor Notaris Pranata &amp; Partners.
+      </p>
+    </div>
+  </div>
+
+  <p
+    class="select-none overflow-hidden whitespace-nowrap px-6 pb-6 text-center font-display text-[13vw] leading-none text-hairline"
+    aria-hidden="true"
+  >
+    Pranata &amp; Partners
+  </p>
+</footer>

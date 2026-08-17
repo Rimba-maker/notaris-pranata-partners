@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Kantor Notaris Pranata & Partners: Notaris & PPAT Jakarta Selatan',
+  description = 'Kantor notaris terpercaya di Jakarta Selatan. AJB properti, pendirian PT, perjanjian pranikah, akta waris, perusahaan. Diangkat Menkumham, 12+ tahun pengalaman.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['LegalService', 'LocalBusiness'],
+      '@id': `${Astro.site}#organization`,
+      name: 'Kantor Notaris Pranata & Partners',
+      description,
+      url: Astro.site,
+      telephone: '+62-21-0000-0000',
+      priceRange: 'Rp 200.000 - Rp 7.000.000',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Jl. Kemang Selatan VIII No. 88',
+        addressLocality: 'Jakarta Selatan',
+        addressRegion: 'DKI Jakarta',
+        addressCountry: 'ID',
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:00',
+          closes: '17:00',
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Saturday'],
+          opens: '09:00',
+          closes: '13:00',
+        },
+      ],
+      founder: { '@id': `${Astro.site}#founder` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${Astro.site}#founder`,
+      name: 'Andi Pranata, S.H., M.Kn.',
+      jobTitle: 'Notaris & PPAT',
+      alumniOf: 'Universitas Indonesia',
+      memberOf: {
+        '@type': 'Organization',
+        name: 'Ikatan Notaris Indonesia (INI)',
+      },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="notaris jakarta selatan, jasa notaris, AJB notaris, pendirian PT, perjanjian pranikah, akta waris notaris, PPAT jakarta"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://picsum.photos/seed/notaris-pranata-partners-og/1200/630" />
+    <meta property="og:locale" content="id_ID" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@import "@fontsource/source-serif-4/400.css";
+@import "@fontsource/source-serif-4/500.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+/* Design tokens, mirrored 1:1 from DESIGN.md — do not hand-tune here without updating DESIGN.md too. */
+@theme {
+  --color-primary: #0a1a33;
+  --color-on-primary: #ffffff;
+  --color-ink: #14161c;
+  --color-body: #6b6b6b;
+  --color-hairline: #e3e0d8;
+  --color-canvas: #ffffff;
+  --color-canvas-dark: #0a1428;
+  --color-surface-dark-soft: #1c2a44;
+  --color-on-dark: #ffffff;
+  --color-accent-gold: #b08d3e;
+  --color-accent-gold-soft: #efe6ce;
+
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-full: 9999px;
+
+  --spacing-section: 80px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}

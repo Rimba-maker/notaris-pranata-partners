@@ -1,0 +1,162 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const services = [
+  'Akta Tanah & Properti',
+  'Akta Keluarga',
+  'Akta Perusahaan & Bisnis',
+  'Akta Perjanjian Bisnis',
+  'Akta Keuangan & Hutang',
+  'Legalisasi & Waarmerking',
+  'Pengurusan & Pendaftaran',
+  'Akta Wasiat & Hibah',
+];
+---
+
+<section id="kontak" class="bg-canvas-dark py-section">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 md:grid-cols-2">
+    <div>
+      <h2 class="font-display text-3xl text-on-dark md:text-4xl">
+        Buat Janji Konsultasi
+      </h2>
+      <p class="mt-4 max-w-[50ch] text-base leading-relaxed text-on-dark/80">
+        Konsultasi awal 30 menit gratis. Sampaikan kebutuhan Anda, kami
+        berikan rekomendasi dan estimasi biaya akurat.
+      </p>
+
+      <a
+        href="https://wa.me/6281234567890"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-8 inline-flex items-center gap-2 rounded-sm border border-on-dark/20 px-6 py-3 font-mono text-sm font-medium uppercase tracking-[0.08em] text-on-dark transition-colors hover:bg-on-dark/10"
+      >
+        <Icon name="ph:whatsapp-logo" class="h-4 w-4" />
+        WhatsApp Direct
+      </a>
+    </div>
+
+    <form
+      name="konsultasi"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="space-y-5"
+      id="contact-form"
+    >
+      <input type="hidden" name="form-name" value="konsultasi" />
+      <p class="hidden">
+        <label>Jangan isi ini: <input name="bot-field" /></label>
+      </p>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div class="flex flex-col gap-2">
+          <label for="nama" class="text-sm text-on-dark">Nama</label>
+          <input
+            id="nama"
+            name="nama"
+            type="text"
+            required
+            class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="whatsapp" class="text-sm text-on-dark">WhatsApp</label>
+          <input
+            id="whatsapp"
+            name="whatsapp"
+            type="tel"
+            required
+            class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="email" class="text-sm text-on-dark">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div class="flex flex-col gap-2">
+          <label for="layanan" class="text-sm text-on-dark">Layanan dibutuhkan</label>
+          <select
+            id="layanan"
+            name="layanan"
+            required
+            class="rounded-sm border border-on-dark/20 bg-canvas-dark px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+          >
+            <option value="" disabled selected>Pilih layanan</option>
+            {services.map((s) => <option value={s}>{s}</option>)}
+          </select>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="tanggal" class="text-sm text-on-dark">Tanggal preferensi</label>
+          <input
+            id="tanggal"
+            name="tanggal"
+            type="date"
+            class="rounded-sm border border-on-dark/20 bg-canvas-dark px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="pesan" class="text-sm text-on-dark">Pesan</label>
+        <textarea
+          id="pesan"
+          name="pesan"
+          rows="4"
+          class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full rounded-sm bg-accent-gold px-6 py-3 font-mono text-sm font-medium uppercase tracking-[0.08em] text-ink transition-opacity disabled:opacity-60"
+      >
+        Buat Janji Temu
+      </button>
+
+      <p id="form-status" class="hidden text-sm text-on-dark" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    button.disabled = true;
+    button.textContent = 'Mengirim...';
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form) as any).toString(),
+      });
+      form.reset();
+      button.textContent = 'Terkirim';
+      if (status) {
+        status.textContent = 'Terima kasih, tim kami akan menghubungi Anda segera.';
+        status.classList.remove('hidden');
+      }
+    } catch {
+      button.disabled = false;
+      button.textContent = 'Buat Janji Temu';
+      if (status) {
+        status.textContent = 'Gagal mengirim, silakan coba lagi atau hubungi via WhatsApp.';
+        status.classList.remove('hidden');
+      }
+    }
+  });
+</script>

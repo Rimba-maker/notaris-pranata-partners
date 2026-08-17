@@ -1,0 +1,62 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const hours = [
+  { day: 'Senin - Jumat', time: '09:00 - 17:00' },
+  { day: 'Sabtu', time: '09:00 - 13:00 (by appointment)' },
+  { day: 'Minggu & libur nasional', time: 'Tutup' },
+];
+---
+
+<section class="bg-canvas py-section">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="font-display text-3xl text-ink md:text-4xl">Lokasi &amp; Jam Buka</h2>
+
+    <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
+      <div>
+        <div class="flex items-start gap-3">
+          <Icon name="ph:map-pin" class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
+          <p class="text-base text-ink">
+            Jl. Kemang Selatan VIII No. 88, Jakarta Selatan
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-start gap-3">
+          <Icon name="ph:clock" class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
+          <dl class="space-y-1.5">
+            {
+              hours.map((h) => (
+                <div class="flex gap-4 text-sm">
+                  <dt class="w-44 text-body">{h.day}</dt>
+                  <dd class="text-ink">{h.time}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+
+        <div class="mt-6 flex items-start gap-3">
+          <Icon name="ph:calendar-check" class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
+          <p class="text-sm text-body">
+            Janji temu disarankan sebelumnya untuk pelayanan optimal.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-start gap-3">
+          <Icon name="ph:car" class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
+          <p class="text-sm text-body">Tersedia area parkir di kantor.</p>
+        </div>
+      </div>
+
+      <div class="aspect-[4/3] overflow-hidden rounded-sm border border-hairline">
+        <iframe
+          title="Lokasi Kantor Notaris Pranata & Partners"
+          src="https://www.google.com/maps?q=Jl.+Kemang+Selatan+VIII+No.+88,+Jakarta+Selatan&output=embed"
+          class="h-full w-full"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

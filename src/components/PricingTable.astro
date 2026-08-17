@@ -1,0 +1,71 @@
+---
+const groups = [
+  {
+    cluster: 'Properti',
+    rows: [
+      { layanan: 'AJB Properti', biaya: '0.5% - 1% dari NJOP', catatan: 'Min Rp 2.5jt' },
+    ],
+  },
+  {
+    cluster: 'Keluarga',
+    rows: [
+      { layanan: 'Perjanjian Pranikah', biaya: 'Rp 3 jt - 6 jt', catatan: 'Konsultasi termasuk' },
+      { layanan: 'Akta Waris', biaya: 'Rp 2 jt - 5 jt', catatan: 'Tergantung kompleksitas' },
+      { layanan: 'Akta Hibah', biaya: 'Rp 1.5 jt - 3 jt', catatan: '+ BPHTB' },
+      { layanan: 'Akta Wasiat', biaya: 'Rp 1.5 jt - 3 jt', catatan: '' },
+    ],
+  },
+  {
+    cluster: 'Perusahaan & Bisnis',
+    rows: [
+      { layanan: 'Pendirian PT', biaya: 'Rp 4 jt - 7 jt', catatan: 'Belum termasuk PNBP & SK' },
+      { layanan: 'Pendirian CV', biaya: 'Rp 2.5 jt - 4 jt', catatan: 'Belum termasuk pendaftaran' },
+      { layanan: 'Perubahan Anggaran Dasar', biaya: 'Rp 2 jt - 4 jt', catatan: 'Per perubahan' },
+      { layanan: 'Perjanjian Kerja Sama', biaya: 'Rp 1.5 jt - 5 jt', catatan: 'Tergantung pasal & nilai' },
+    ],
+  },
+  {
+    cluster: 'Legalisasi',
+    rows: [
+      { layanan: 'Legalisasi / Waarmerking', biaya: 'Rp 200k - 500k', catatan: 'Per dokumen' },
+    ],
+  },
+];
+---
+
+<section id="biaya" class="bg-canvas py-section">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2 class="font-display text-3xl text-ink md:text-4xl">Referensi Biaya</h2>
+    <p class="mt-4 max-w-[65ch] text-base text-body">
+      Biaya notaris diatur dalam UU No. 30/2004 dan Permenkumham, dengan
+      toleransi negosiasi sesuai kompleksitas. Berikut indikatif yang biasa
+      kami terapkan.
+    </p>
+
+    <div class="mt-10 space-y-10">
+      {
+        groups.map((group) => (
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.08em] text-body">
+              {group.cluster}
+            </p>
+            <div class="mt-3 divide-y divide-hairline border-t border-hairline">
+              {group.rows.map((row) => (
+                <div class="grid grid-cols-[1.3fr_1fr_1fr] gap-4 py-3">
+                  <span class="text-sm text-ink">{row.layanan}</span>
+                  <span class="font-display text-sm text-ink">{row.biaya}</span>
+                  <span class="text-sm text-body">{row.catatan}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 text-sm text-body">
+      Harga belum termasuk PNBP, pajak (PPh dan BPHTB jika ada), dan biaya
+      pendaftaran pemerintah. Konsultasi gratis untuk estimasi akurat.
+    </p>
+  </div>
+</section>

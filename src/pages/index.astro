@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/islands/Hero';
+import CredentialsBand from '../components/islands/CredentialsBand';
+import AboutNotaris from '../components/AboutNotaris.astro';
+import Services from '../components/islands/Services';
+import WhenNeedNotary from '../components/islands/WhenNeedNotary';
+import PricingTable from '../components/PricingTable.astro';
+import Process from '../components/islands/Process';
+import DocumentsRequired from '../components/islands/DocumentsRequired';
+import OfficeSchedule from '../components/OfficeSchedule.astro';
+import FAQ from '../components/islands/FAQ';
+import Testimonial from '../components/islands/Testimonial';
+import ContactCTA from '../components/ContactCTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Navbar />
+  <main>
+    <Hero client:load />
+    <CredentialsBand client:visible />
+    <AboutNotaris />
+    <Services client:visible />
+    <WhenNeedNotary client:visible />
+    <PricingTable />
+    <Process client:visible />
+    <DocumentsRequired client:visible />
+    <OfficeSchedule />
+    <FAQ client:visible />
+    <Testimonial client:visible />
+    <ContactCTA />
+  </main>
+  <Footer />
+</Layout>
