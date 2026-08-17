@@ -104,7 +104,7 @@ export default function Services() {
   return (
     <section id="layanan" className="bg-canvas py-section">
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="font-display text-3xl text-ink md:text-4xl">
+        <h2 className="section-heading">
           Layanan Kami
         </h2>
         <p className="mt-4 max-w-[60ch] text-base text-body">

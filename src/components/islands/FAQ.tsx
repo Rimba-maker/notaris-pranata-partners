@@ -36,7 +36,7 @@ export default function FAQ() {
   return (
     <section className="bg-canvas py-section">
       <div className="mx-auto max-w-3xl px-6">
-        <h2 className="font-display text-3xl text-ink md:text-4xl">FAQ</h2>
+        <h2 className="section-heading">FAQ</h2>
 
         <div className="mt-10 divide-y divide-hairline border-t border-b border-hairline">
           {faqs.map((item, i) => {

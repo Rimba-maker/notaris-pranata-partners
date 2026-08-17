@@ -33,6 +33,27 @@
   --spacing-section: 80px;
 }
 
+/* Repeated 3+ times verbatim across sections — extracted per DESIGN.md's named typography roles. */
+@utility mono-caps-button {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@utility section-heading {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: var(--color-ink);
+
+  @media (width >= 48rem) {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
