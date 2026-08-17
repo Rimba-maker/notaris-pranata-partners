@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 const links = [
   { href: '#tentang', label: 'Tentang' },
   { href: '#layanan', label: 'Layanan' },
@@ -37,15 +39,47 @@ const links = [
       }
     </nav>
 
-    <a
-      href="#kontak"
-      id="nav-cta"
-      class="rounded-sm bg-canvas px-6 py-2 font-mono text-sm font-medium uppercase tracking-[0.08em] text-ink transition-colors data-[scrolled=true]:bg-primary data-[scrolled=true]:text-on-primary"
-      data-scrolled="false"
-    >
-      Buat Janji
-    </a>
+    <div class="flex items-center gap-3">
+      <a
+        href="#kontak"
+        id="nav-cta"
+        class="rounded-sm bg-canvas px-6 py-2 mono-caps-button text-ink transition-colors data-[scrolled=true]:bg-primary data-[scrolled=true]:text-on-primary"
+        data-scrolled="false"
+      >
+        Buat Janji
+      </a>
+
+      <button
+        id="nav-menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-menu-drawer"
+        aria-label="Buka menu navigasi"
+        class="flex h-9 w-9 items-center justify-center text-on-dark md:hidden [[data-scrolled=true]_&]:text-ink"
+      >
+        <Icon name="ph:list" id="nav-menu-icon-open" class="h-6 w-6" />
+        <Icon name="ph:x" id="nav-menu-icon-close" class="hidden h-6 w-6" />
+      </button>
+    </div>
   </div>
+
+  <nav
+    id="nav-menu-drawer"
+    aria-label="Navigasi mobile"
+    class="fixed inset-0 top-16 hidden flex-col items-center justify-center gap-8 bg-canvas-dark md:hidden"
+  >
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          data-nav-link
+          class="font-display text-2xl text-on-dark"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
 </header>
 
 <script>
@@ -66,4 +100,32 @@ const links = [
     );
     observer.observe(hero);
   }
+
+  // Mobile drawer: full-overlay menu, closes on link click or Escape.
+  const toggle = document.getElementById('nav-menu-toggle');
+  const drawer = document.getElementById('nav-menu-drawer');
+  const iconOpen = document.getElementById('nav-menu-icon-open');
+  const iconClose = document.getElementById('nav-menu-icon-close');
+
+  function setDrawer(open: boolean) {
+    if (!toggle || !drawer || !iconOpen || !iconClose) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    drawer.classList.toggle('hidden', !open);
+    drawer.classList.toggle('flex', open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+    document.body.classList.toggle('overflow-hidden', open);
+  }
+
+  toggle?.addEventListener('click', () => {
+    setDrawer(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  drawer?.querySelectorAll('[data-nav-link]').forEach((link) => {
+    link.addEventListener('click', () => setDrawer(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setDrawer(false);
+  });
 </script>
