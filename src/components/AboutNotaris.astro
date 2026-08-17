@@ -9,9 +9,21 @@ const certifications = [
 ];
 
 const team = [
-  { name: 'Andi Pranata, S.H., M.Kn.', role: 'Notaris & PPAT', seed: 'notaris-andi-pranata' },
-  { name: 'Tika Hartono, S.H., M.Kn.', role: 'Partner Notaris (bergabung 2020)', seed: 'notaris-tika-hartono' },
-  { name: 'Reza Wijaya, S.H.', role: 'Senior Legal Staff', seed: 'notaris-reza-wijaya' },
+  {
+    name: 'Andi Pranata, S.H., M.Kn.',
+    role: 'Notaris & PPAT',
+    photoId: '1718209881007-c0ecdfc00f9d',
+  },
+  {
+    name: 'Tika Hartono, S.H., M.Kn.',
+    role: 'Partner Notaris (bergabung 2020)',
+    photoId: '1662104935883-e9dd0619eaba',
+  },
+  {
+    name: 'Reza Wijaya, S.H.',
+    role: 'Senior Legal Staff',
+    photoId: '1601489664830-d9c5fd91fb00',
+  },
 ];
 ---
 
@@ -20,7 +32,7 @@ const team = [
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
       <div class="relative aspect-[3/4] overflow-hidden rounded-sm">
         <img
-          src="https://picsum.photos/seed/notaris-office-interior/900/1200"
+          src="https://images.unsplash.com/photo-1571055931484-22dce9d6c510?w=900&h=1200&fit=crop&crop=focalpoint&fp-x=0.22&fp-y=0.5&fp-z=1.25&q=80&auto=format"
           alt="Interior Kantor Notaris Pranata & Partners"
           class="h-full w-full object-cover"
           width="900"
@@ -30,7 +42,7 @@ const team = [
       </div>
 
       <div>
-        <h2 class="font-display text-3xl text-ink md:text-4xl">Tentang Kami</h2>
+        <h2 class="section-heading">Tentang Kami</h2>
         <p class="mt-6 max-w-[65ch] text-base leading-relaxed text-body">
           Kantor Notaris Pranata &amp; Partners didirikan oleh Bapak Andi
           Pranata, S.H., M.Kn., notaris dengan pengalaman lebih dari 12 tahun
@@ -60,7 +72,7 @@ const team = [
             <div>
               <div class="aspect-[3/4] overflow-hidden rounded-sm">
                 <img
-                  src={`https://picsum.photos/seed/${member.seed}/600/800`}
+                  src={`https://images.unsplash.com/photo-${member.photoId}?w=600&h=800&fit=crop&crop=faces&q=80&auto=format`}
                   alt={member.name}
                   class="h-full w-full object-cover"
                   width="600"
