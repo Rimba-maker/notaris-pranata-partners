@@ -34,13 +34,13 @@ export default function Hero() {
           <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-4">
             <a
               href="#kontak"
-              className="rounded-sm bg-accent-gold px-6 py-3 font-mono text-sm font-medium uppercase tracking-[0.08em] text-ink transition-transform active:scale-[0.98]"
+              className="rounded-sm bg-primary px-6 py-3 mono-caps-button text-on-primary transition-transform active:scale-[0.98]"
             >
               Konsultasi Gratis
             </a>
             <a
               href="#layanan"
-              className="rounded-sm border border-on-dark/20 px-6 py-3 font-mono text-sm font-medium uppercase tracking-[0.08em] text-on-dark transition-colors hover:bg-on-dark/10 active:scale-[0.98]"
+              className="rounded-sm border border-on-dark/20 px-6 py-3 mono-caps-button text-on-dark transition-colors hover:bg-on-dark/10 active:scale-[0.98]"
             >
               Lihat Layanan
             </a>
@@ -54,7 +54,7 @@ export default function Hero() {
           className="relative aspect-[4/3] overflow-hidden rounded-sm"
         >
           <img
-            src="https://picsum.photos/seed/notaris-legal-signing/1200/900"
+            src="https://images.unsplash.com/photo-1664463760781-f159dfe3af30?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format"
             alt="Penandatanganan akta legal di Kantor Notaris Pranata & Partners"
             className="h-full w-full object-cover"
             width={1200}
