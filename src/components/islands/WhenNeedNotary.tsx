@@ -41,7 +41,7 @@ export default function WhenNeedNotary() {
   return (
     <section className="bg-canvas py-section">
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="font-display text-3xl text-ink md:text-4xl">
+        <h2 className="section-heading">
           Kapan Anda Butuh Notaris?
         </h2>
         <p className="mt-4 max-w-[60ch] text-base text-body">

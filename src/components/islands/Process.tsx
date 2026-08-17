@@ -37,7 +37,7 @@ export default function Process() {
   return (
     <section id="tata-cara" className="bg-canvas py-section">
       <div className="mx-auto max-w-4xl px-6">
-        <h2 className="font-display text-3xl text-ink md:text-4xl">
+        <h2 className="section-heading">
           Tata Cara Pembuatan Akta
         </h2>
 
