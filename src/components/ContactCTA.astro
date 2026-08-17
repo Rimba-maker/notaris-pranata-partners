@@ -11,6 +11,8 @@ const services = [
   'Pengurusan & Pendaftaran',
   'Akta Wasiat & Hibah',
 ];
+
+const today = new Date().toISOString().slice(0, 10);
 ---
 
 <section id="kontak" class="bg-canvas-dark py-section">
@@ -28,7 +30,7 @@ const services = [
         href="https://wa.me/6281234567890"
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-8 inline-flex items-center gap-2 rounded-sm border border-on-dark/20 px-6 py-3 font-mono text-sm font-medium uppercase tracking-[0.08em] text-on-dark transition-colors hover:bg-on-dark/10"
+        class="mt-8 inline-flex items-center gap-2 rounded-sm border border-on-dark/20 px-6 py-3 mono-caps-button text-on-dark transition-colors hover:bg-on-dark/10"
       >
         <Icon name="ph:whatsapp-logo" class="h-4 w-4" />
         WhatsApp Direct
@@ -56,7 +58,7 @@ const services = [
             name="nama"
             type="text"
             required
-            class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+            class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold focus-visible:ring-2 focus-visible:ring-accent-gold"
           />
         </div>
         <div class="flex flex-col gap-2">
@@ -66,7 +68,7 @@ const services = [
             name="whatsapp"
             type="tel"
             required
-            class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+            class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold focus-visible:ring-2 focus-visible:ring-accent-gold"
           />
         </div>
       </div>
@@ -78,7 +80,7 @@ const services = [
           name="email"
           type="email"
           required
-          class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+          class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold focus-visible:ring-2 focus-visible:ring-accent-gold"
         />
       </div>
 
@@ -89,10 +91,11 @@ const services = [
             id="layanan"
             name="layanan"
             required
-            class="rounded-sm border border-on-dark/20 bg-canvas-dark px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+            class="rounded-sm border border-on-dark/20 bg-canvas-dark px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold focus-visible:ring-2 focus-visible:ring-accent-gold"
           >
             <option value="" disabled selected>Pilih layanan</option>
             {services.map((s) => <option value={s}>{s}</option>)}
+            <option value="Belum yakin">Belum yakin, butuh saran</option>
           </select>
         </div>
         <div class="flex flex-col gap-2">
@@ -101,7 +104,8 @@ const services = [
             id="tanggal"
             name="tanggal"
             type="date"
-            class="rounded-sm border border-on-dark/20 bg-canvas-dark px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+            min={today}
+            class="rounded-sm border border-on-dark/20 bg-canvas-dark px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold focus-visible:ring-2 focus-visible:ring-accent-gold"
           />
         </div>
       </div>
@@ -112,13 +116,13 @@ const services = [
           id="pesan"
           name="pesan"
           rows="4"
-          class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold"
+          class="rounded-sm border border-on-dark/20 bg-transparent px-4 py-2.5 text-sm text-on-dark outline-none transition-colors focus:border-accent-gold focus-visible:ring-2 focus-visible:ring-accent-gold"
         ></textarea>
       </div>
 
       <button
         type="submit"
-        class="w-full rounded-sm bg-accent-gold px-6 py-3 font-mono text-sm font-medium uppercase tracking-[0.08em] text-ink transition-opacity disabled:opacity-60"
+        class="w-full rounded-sm bg-primary px-6 py-3 mono-caps-button text-on-primary transition-opacity disabled:opacity-60"
       >
         Buat Janji Temu
       </button>
