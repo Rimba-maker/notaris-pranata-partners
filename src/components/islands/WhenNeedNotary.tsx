@@ -1,35 +1,35 @@
 import { motion, useReducedMotion } from 'motion/react';
-import { House, Heart, Buildings, Gift, Handshake, Scroll } from '@phosphor-icons/react';
+import { HouseIcon, HeartIcon, BuildingsIcon, GiftIcon, HandshakeIcon, ScrollIcon } from '@phosphor-icons/react';
 import { staggerContainer, fadeUp } from '../../lib/motion';
 
 const cases = [
   {
-    icon: House,
+    icon: HouseIcon,
     title: 'Membeli / Menjual Properti',
     body: 'AJB harus dibuat di hadapan PPAT (notaris merangkap PPAT). Tanpa AJB, transfer hak milik tidak sah secara hukum.',
   },
   {
-    icon: Heart,
+    icon: HeartIcon,
     title: 'Sebelum / Sesudah Pernikahan',
     body: 'Perjanjian pranikah atau pascanikah melindungi harta masing-masing pihak, dibuat di hadapan notaris sebelum pencatatan nikah.',
   },
   {
-    icon: Buildings,
+    icon: BuildingsIcon,
     title: 'Mendirikan PT / CV',
     body: 'Akta pendirian harus dibuat di hadapan notaris untuk mendapatkan pengesahan dari Menkumham (PT) atau pengadilan (CV lama).',
   },
   {
-    icon: Gift,
+    icon: GiftIcon,
     title: 'Hibah ke Keluarga',
     body: 'Hibah tanah, properti, atau saham di atas nilai tertentu wajib dengan akta notaris untuk validitas pajak.',
   },
   {
-    icon: Handshake,
+    icon: HandshakeIcon,
     title: 'Kerja Sama Bisnis',
     body: 'Perjanjian dengan nilai signifikan (di atas Rp 1 miliar) sebaiknya akta notaris, memberikan kepastian hukum dan alat bukti otentik.',
   },
   {
-    icon: Scroll,
+    icon: ScrollIcon,
     title: 'Wasiat / Pembagian Waris',
     body: 'Wasiat lebih aman dibuat dalam akta notaris. Pembagian waris berdasarkan akta meminimalisir konflik keluarga.',
   },

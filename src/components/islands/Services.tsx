@@ -1,19 +1,19 @@
 import { motion, useReducedMotion } from 'motion/react';
 import {
-  House,
-  Heart,
-  Buildings,
-  Handshake,
-  Coins,
-  Stamp,
-  Globe,
-  Scroll,
+  HouseIcon,
+  HeartIcon,
+  BuildingsIcon,
+  HandshakeIcon,
+  CoinsIcon,
+  StampIcon,
+  GlobeIcon,
+  ScrollIcon,
 } from '@phosphor-icons/react';
 import { staggerContainer, fadeUp } from '../../lib/motion';
 
 const services = [
   {
-    icon: House,
+    icon: HouseIcon,
     title: 'Akta Tanah & Properti',
     items: [
       'AJB (Akta Jual Beli)',
@@ -25,7 +25,7 @@ const services = [
     ],
   },
   {
-    icon: Heart,
+    icon: HeartIcon,
     title: 'Akta Keluarga',
     items: [
       'Perjanjian Pranikah',
@@ -36,7 +36,7 @@ const services = [
     ],
   },
   {
-    icon: Buildings,
+    icon: BuildingsIcon,
     title: 'Akta Perusahaan & Bisnis',
     items: [
       'Pendirian PT / CV',
@@ -47,7 +47,7 @@ const services = [
     ],
   },
   {
-    icon: Handshake,
+    icon: HandshakeIcon,
     title: 'Akta Perjanjian Bisnis',
     items: [
       'Perjanjian Kerja Sama',
@@ -58,7 +58,7 @@ const services = [
     ],
   },
   {
-    icon: Coins,
+    icon: CoinsIcon,
     title: 'Akta Keuangan & Hutang',
     items: [
       'Akta Pengakuan Hutang',
@@ -68,7 +68,7 @@ const services = [
     ],
   },
   {
-    icon: Stamp,
+    icon: StampIcon,
     title: 'Legalisasi & Waarmerking',
     items: [
       'Legalisasi tanda tangan',
@@ -77,7 +77,7 @@ const services = [
     ],
   },
   {
-    icon: Globe,
+    icon: GlobeIcon,
     title: 'Pengurusan & Pendaftaran',
     items: [
       'Pendaftaran AHU (Online)',
@@ -87,7 +87,7 @@ const services = [
     ],
   },
   {
-    icon: Scroll,
+    icon: ScrollIcon,
     title: 'Akta Wasiat & Hibah',
     items: [
       'Akta Wasiat',

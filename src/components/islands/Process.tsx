@@ -1,25 +1,25 @@
 import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import { Phone, ClipboardText, PenNib, Package } from '@phosphor-icons/react';
+import { PhoneIcon, ClipboardTextIcon, PenNibIcon, PackageIcon } from '@phosphor-icons/react';
 
 const steps = [
   {
-    icon: Phone,
+    icon: PhoneIcon,
     title: 'Konsultasi Awal',
     body: 'Booking janji temu, diskusi kebutuhan (gratis 30 menit).',
   },
   {
-    icon: ClipboardText,
+    icon: ClipboardTextIcon,
     title: 'Persiapan Dokumen',
     body: 'Kami berikan checklist dokumen yang dibutuhkan.',
   },
   {
-    icon: PenNib,
+    icon: PenNibIcon,
     title: 'Tanda Tangan Akta',
     body: 'Hadir di kantor untuk pembacaan dan penandatanganan akta.',
   },
   {
-    icon: Package,
+    icon: PackageIcon,
     title: 'Penyerahan & Pendaftaran',
     body: 'Salinan akta diberikan, kami urus pendaftaran jika diperlukan.',
   },

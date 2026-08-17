@@ -1,12 +1,12 @@
 import { motion, useReducedMotion } from 'motion/react';
-import { SealCheck, Buildings, Clock, Files } from '@phosphor-icons/react';
+import { SealCheckIcon, BuildingsIcon, ClockIcon, FilesIcon } from '@phosphor-icons/react';
 import { staggerContainer, fadeUp } from '../../lib/motion';
 
 const badges = [
-  { icon: SealCheck, label: 'Diangkat Menkumham RI' },
-  { icon: Buildings, label: 'Anggota INI (Ikatan Notaris Indonesia)' },
-  { icon: Clock, label: '12+ Tahun Pengalaman' },
-  { icon: Files, label: '5.000+ Akta Terbit' },
+  { icon: SealCheckIcon, label: 'Diangkat Menkumham RI' },
+  { icon: BuildingsIcon, label: 'Anggota INI (Ikatan Notaris Indonesia)' },
+  { icon: ClockIcon, label: '12+ Tahun Pengalaman' },
+  { icon: FilesIcon, label: '5.000+ Akta Terbit' },
 ];
 
 export default function CredentialsBand() {

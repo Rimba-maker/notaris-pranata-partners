@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { CaretDown } from '@phosphor-icons/react';
+import { CaretDownIcon } from '@phosphor-icons/react';
 
 const faqs = [
   {
@@ -58,7 +58,7 @@ export default function FAQ() {
                     transition={{ duration: reduce ? 0 : 0.3, ease: 'easeOut' }}
                     className="shrink-0 text-body"
                   >
-                    <CaretDown size={18} weight="light" aria-hidden="true" />
+                    <CaretDownIcon size={18} weight="light" aria-hidden="true" />
                   </motion.span>
                 </button>
                 <AnimatePresence initial={false}>
