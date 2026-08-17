@@ -257,10 +257,6 @@ components:
     textColor: "{colors.ink}"
     typography: "{typography.body-md}"
     padding: "{spacing.section} {spacing.3xl}"
-  footer-wordmark-banner:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.body}"
-    typography: "{typography.display-xxl}"
 
   # ─── Examples (illustrative) — auto-derived; resolve any TO_FILL markers below ───
   ex-pricing-tier:
@@ -340,7 +336,6 @@ Surfaces alternate deliberately: a `{colors.canvas-dark}` (`#0A1428`, deep navy)
 - All-caps mono eyebrows and button labels in `{typography.mono-caps-eyebrow}` / `{typography.mono-caps-button}` everywhere — section titles, table headers, "TERDAFTAR MENKUMHAM" style credential tags — reading as stamped/official marks rather than tech labels.
 - Lightly rounded card chrome at `{rounded.sm}` 3 px; `{rounded.full}` reserved only for a floating contact/WhatsApp launcher, if used.
 - Dual surface mode — alternating `{colors.canvas-dark}` and `{colors.canvas}` bands; no in-between greys. The single soft surface `{colors.hairline}` exists only to mark table-header rows.
-- A large `Pranata & Partners` wordmark banner at the very bottom of the page, set in `{typography.display-xxl}` and tinted nearly-into-the-canvas (`{colors.hairline}`), as a quiet sign-off that doubles as a footer separator.
 
 ## Colors
 
@@ -441,7 +436,7 @@ The mono-cap button label is set at 16 px; combined with `{spacing.xs}` 4 px top
 - **Hero**: at desktop, headline left + photograph/gold-line visual right (50 / 50). At mobile, headline stacks above a smaller-scale visual — never below.
 - **Credentials band**: 4-up grid at desktop drops to 2-up at tablet, 1-up at mobile. Card chrome stays identical.
 - **Pricing data table**: at desktop, full-width with all columns visible (Layanan / Biaya / Catatan). At tablet, sub-tab row enables horizontal scroll. At mobile, cell rows stack layanan-name above price block.
-- **Footer wordmark banner**: scales fluidly — the `Pranata & Partners` wordmark stays edge-to-edge regardless of viewport.
+- **Nav**: collapses to logo + hamburger below `md`; the menu opens as a full-overlay drawer (`{colors.canvas-dark}`) with the same link list stacked vertically, closing on link click or Escape.
 
 #### Image Behavior
 - **Hero ribbon graphic**: rendered as an SVG, scales fluidly with the hero container; never crops, never repositions.
@@ -461,7 +456,6 @@ The mono-cap button label is set at 16 px; combined with `{spacing.xs}` 4 px top
 ### Decorative Depth
 - **Gold divider as depth**: a thin `{colors.accent-gold}` rule under the hero headline (or under a section eyebrow) is the page's only true decorative accent. No illustration system beyond this — restraint is the brand's atmosphere.
 - **Credential-band as section-depth break**: the dark navy credentials/trust-badge band ("Diangkat Menkumham RI", "12+ Tahun Pengalaman") inside the otherwise-white page acts as a one-step lift, mirroring the hero's polarity flip.
-- **Wordmark banner as terminal depth**: the large `Pranata & Partners` letters at the bottom are technically inside `{colors.canvas}` but tinted toward `{colors.hairline}` so they read as a faint stencil, giving the page a final, quiet sign-off.
 
 ## Shapes
 
@@ -469,7 +463,7 @@ The mono-cap button label is set at 16 px; combined with `{spacing.xs}` 4 px top
 
 | Token | Value | Use |
 |---|---|---|
-| `{rounded.none}` | 0px | Hero / credentials full-bleed bands; the footer wordmark banner. |
+| `{rounded.none}` | 0px | Hero / credentials full-bleed bands. |
 | `{rounded.xs}` | 2px | The pricing page's slightly tighter sub-tab and outline button. |
 | `{rounded.sm}` | 3px | The brand's canonical radius — buttons, badges, cards, data-table rows, stat tiles. Kept tighter than a typical SaaS 4px to read structured/formal rather than soft. |
 | `{rounded.md}` | 6px | Feature-tab pills inside the services section, larger pricing-tab containers. |
@@ -534,7 +528,7 @@ The mono-cap button label is set at 16 px; combined with `{spacing.xs}` 4 px top
 - Text `{colors.on-dark}` (or `{colors.ink}` after scroll), set in `{typography.body-md}` 400 weight. Links separate with `{spacing.2xl}` 24 px between siblings.
 
 **`footer`** — the bottom 4-column nav.
-- Background `{colors.canvas}`, text `{colors.ink}`, padding `{spacing.section} {spacing.3xl}`. Eyebrow labels in `{typography.mono-caps-eyebrow}`; link rows in `{typography.body-md}`.
+- Background `{colors.canvas}`, text `{colors.ink}`, padding `{spacing.section} {spacing.3xl}`. Eyebrow labels in `{typography.mono-caps-eyebrow}`; link rows in `{typography.body-md}`. No wordmark banner or decorative sign-off beneath the nav grid — the copyright line is the terminal element.
 
 ### Signature Components
 
@@ -564,9 +558,6 @@ The mono-cap button label is set at 16 px; combined with `{spacing.xs}` 4 px top
 
 **`badge-subtle-on-dark`** — the inline tag pill on dark hero / credentials surfaces.
 - Background `{colors.surface-dark-soft}`, text `{colors.on-dark}`, body in `{typography.body-md}`, padding `{spacing.xxs} {spacing.sm}`, shape `{rounded.sm}` 3 px.
-
-**`footer-wordmark-banner`** — the large `Pranata & Partners` wordmark at the bottom of the page.
-- Background `{colors.canvas}`, wordmark colour `{colors.hairline}` (faint stencil tint), set in `{typography.display-xxl}` (serif) scaled fluidly to the viewport width. Edge-to-edge, square corners. Acts as the final page sign-off.
 
 ### Examples (illustrative)
 
@@ -612,7 +603,6 @@ The mono-cap button label is set at 16 px; combined with `{spacing.xs}` 4 px top
 - Use `{colors.accent-gold}` sparingly and deliberately — a divider line, a credential icon, a stat number — never as a section-wide wash. Restraint is what makes it read as confident rather than decorative.
 - Cycle page surfaces in the `{colors.canvas-dark}` → `{colors.canvas}` → `{colors.canvas-dark}` rhythm; the dark-light contrast carries elevation more than any shadow.
 - Use `{rounded.sm}` 3 px as the canonical card / button radius across the system — deliberately tighter than a typical consumer-SaaS 4px, to read structured rather than soft.
-- Render the `Pranata & Partners` wordmark banner at the bottom of the page in `{typography.display-xxl}` (serif), tinted toward `{colors.hairline}` so it reads as a stencil — not as a heavy footer title.
 
 ### Don't
 - Don't introduce a second accent colour. One gold/bronze accent is the entire decorative palette; adding more (especially anything bright/saturated) undercuts the "confident, not flashy" positioning.
