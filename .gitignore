@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# internal-only docs — not for public repo (business/product strategy, design rationale)
+/139-jasa-notaris-PRD.md
+/DESIGN.md
+/PRODUCT.md
+/.impeccable/
