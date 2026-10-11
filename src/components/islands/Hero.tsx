@@ -1,68 +1,39 @@
-import { motion, useReducedMotion } from 'motion/react';
-import { formalReveal, fadeUp } from '../../lib/motion';
+import { ArrowRightIcon } from '@phosphor-icons/react';
+import { photos } from '../../lib/photos';
 
 export default function Hero() {
-  const reduce = useReducedMotion();
-
   return (
-    <section
-      id="hero"
-      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-canvas-dark pt-24 pb-16"
-    >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-2">
-        <motion.div
-          initial={reduce ? false : 'hidden'}
-          animate="visible"
-          variants={formalReveal}
-        >
-          <motion.h1
-            variants={fadeUp}
-            className="font-display text-4xl leading-tight text-on-dark md:text-5xl lg:text-6xl"
-          >
-            Setiap Tanda Tangan, Setiap Akta. Kami Pastikan Sah Secara Hukum.
-          </motion.h1>
-
-          <motion.p
-            variants={fadeUp}
-            className="mt-6 max-w-[42ch] text-lg leading-relaxed text-on-dark/80"
-          >
-            Kantor notaris yang melayani perorangan, keluarga, dan badan usaha
-            di Jakarta sejak 2012. Pembuatan akta otentik dengan ketelitian
-            profesional.
-          </motion.p>
-
-          <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#kontak"
-              className="rounded-sm bg-primary px-6 py-3 mono-caps-button text-on-primary transition-transform active:scale-[0.98]"
-            >
-              Konsultasi Gratis
+    <section id="hero" className="hero">
+      <div className="section-shell hero-grid">
+        <div className="hero-copy hero-entrance">
+          <h1>Aman secara hukum.<span>Tenang secara pikiran.</span></h1>
+          <p>
+            Setiap tanda tangan, setiap akta — kami pastikan sah secara hukum.
+            Pendampingan kenotariatan untuk pribadi, keluarga, dan badan usaha
+            di Jakarta sejak 2012.
+          </p>
+          <div className="hero-actions">
+            <a href="#kontak" className="btn btn-primary">
+              Konsultasi Gratis <ArrowRightIcon size={18} weight="light" aria-hidden="true" />
             </a>
-            <a
-              href="#layanan"
-              className="rounded-sm border border-on-dark/20 px-6 py-3 mono-caps-button text-on-dark transition-colors hover:bg-on-dark/10 active:scale-[0.98]"
-            >
-              Lihat Layanan
-            </a>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={reduce ? false : { opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
-          className="relative aspect-[4/3] overflow-hidden rounded-sm"
-        >
+            <a href="#layanan" className="text-link">Jelajahi layanan <ArrowRightIcon size={16} weight="light" aria-hidden="true" /></a>
+          </div>
+          <div className="hero-details">
+            <p><strong>Notaris &amp; PPAT</strong>Jakarta Selatan &amp; sekitarnya</p>
+            <p><strong>Konsultasi awal 30 menit</strong>Dengan janji temu sebelumnya</p>
+          </div>
+        </div>
+        <figure className="hero-photo hero-entrance">
           <img
-            src="https://images.unsplash.com/photo-1664463760781-f159dfe3af30?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format"
-            alt="Penandatanganan akta legal di Kantor Notaris Pranata & Partners"
-            className="h-full w-full object-cover"
-            width={1200}
-            height={900}
-            fetchPriority="high"
+            src={photos.signing}
+            srcSet={`${photos.signing.replace('.webp', '-small.webp')} 640w, ${photos.signing} 1400w`}
+            sizes="(max-width: 640px) calc(100vw - 64px), (max-width: 900px) 45vw, 600px"
+            alt="Ilustrasi dua pihak menandatangani perjanjian di meja kayu"
+            className="hero-photo-main" width={1400} height={934} fetchPriority="high"
           />
-          <div className="pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset ring-on-dark/10" />
-        </motion.div>
+          <img src={photos.detail.replace('.webp', '-small.webp')} alt="Ilustrasi detail pena dan dokumen perjanjian" className="hero-photo-detail" width={640} height={427} />
+          <figcaption className="photo-caption">Ketelitian dalam setiap tanda tangan. Foto ilustrasi · Pexels.</figcaption>
+        </figure>
       </div>
     </section>
   );

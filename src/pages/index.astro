@@ -18,14 +18,14 @@ import Footer from '../components/Footer.astro';
 
 <Layout>
   <Navbar />
-  <main>
-    <Hero client:load />
-    <CredentialsBand client:visible />
+  <main id="main-content">
+    <Hero />
+    <CredentialsBand />
     <AboutNotaris />
-    <Services client:visible />
-    <WhenNeedNotary client:visible />
+    <Services />
+    <WhenNeedNotary />
+    <Process />
     <PricingTable />
-    <Process client:visible />
     <DocumentsRequired client:visible />
     <OfficeSchedule />
     <FAQ client:visible />

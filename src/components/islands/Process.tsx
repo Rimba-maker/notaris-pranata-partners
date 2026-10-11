@@ -1,79 +1,75 @@
-import { useRef } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import { PhoneIcon, ClipboardTextIcon, PenNibIcon, PackageIcon } from '@phosphor-icons/react';
+import { photos } from '../../lib/photos';
 
 const steps = [
   {
-    icon: PhoneIcon,
     title: 'Konsultasi Awal',
     body: 'Booking janji temu, diskusi kebutuhan (gratis 30 menit).',
   },
   {
-    icon: ClipboardTextIcon,
     title: 'Persiapan Dokumen',
     body: 'Kami berikan checklist dokumen yang dibutuhkan.',
   },
   {
-    icon: PenNibIcon,
     title: 'Tanda Tangan Akta',
     body: 'Hadir di kantor untuk pembacaan dan penandatanganan akta.',
   },
   {
-    icon: PackageIcon,
     title: 'Penyerahan & Pendaftaran',
     body: 'Salinan akta diberikan, kami urus pendaftaran jika diperlukan.',
   },
 ];
 
 export default function Process() {
-  const reduce = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start 0.7', 'end 0.4'],
-  });
-  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
-    <section id="tata-cara" className="bg-canvas py-section">
-      <div className="mx-auto max-w-4xl px-6">
-        <h2 className="section-heading">
-          Tata Cara Pembuatan Akta
-        </h2>
+    <section id="tata-cara" className="section-space bg-canvas" aria-labelledby="process-heading">
+      <div className="section-shell">
+        <div className="section-intro">
+          <h2 id="process-heading" className="section-heading max-w-[14ch]">Tata Cara Pembuatan Akta</h2>
+          <p className="section-lead max-w-[46ch]">
+            Dari percakapan pertama hingga penyerahan salinan akta,
+            kenali setiap tahap dan persiapkan dokumen Anda sebelum datang.
+          </p>
+        </div>
 
-        <div ref={containerRef} className="relative mt-14">
-          <div className="absolute top-0 bottom-0 left-6 w-px bg-hairline" aria-hidden="true">
-            <motion.div
-              className="w-full origin-top bg-accent-gold"
-              style={{ scaleY: reduce ? 1 : lineScale, height: '100%' }}
+        <div className="mt-12 grid items-start gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
+          <figure>
+            <img
+              src={photos.consultation}
+              srcSet={`${photos.consultation.replace('.webp', '-small.webp')} 640w, ${photos.consultation} 1400w`}
+              sizes="(max-width: 1024px) calc(100vw - 40px), 46vw"
+              alt="Ilustrasi stok konsultasi profesional dan pembahasan dokumen; bukan foto konsultasi di kantor ini."
+              width={1400}
+              height={934}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[4/5] w-full object-cover"
             />
-          </div>
+            <figcaption className="mt-4 text-xs leading-relaxed text-body">
+              Percakapan dan persiapan mendahului penandatanganan. Foto ilustrasi stok.
+            </figcaption>
+          </figure>
 
-          <ol className="space-y-14">
-            {steps.map(({ icon: Icon, title, body }, i) => (
-              <motion.li
-                key={title}
-                initial={reduce ? false : { opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.1 }}
-                className="relative flex gap-6 pl-0"
-              >
-                <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary font-display text-lg text-on-primary">
-                  {i + 1}
-                </span>
-                <div className="pt-1">
-                  <div className="flex items-center gap-2">
-                    <Icon size={18} weight="light" className="text-accent-gold" aria-hidden="true" />
-                    <h3 className="font-display text-lg text-ink">{title}</h3>
+          <div>
+            <ol className="divide-y divide-hairline border-y border-hairline">
+              {steps.map(({ title, body }, index) => (
+                <li key={title} className="grid grid-cols-[44px_minmax(0,1fr)] gap-5 py-7 sm:grid-cols-[60px_minmax(0,1fr)] sm:gap-6">
+                  <span aria-hidden="true" className="font-display text-[38px] leading-none text-accent-gold">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-[27px] leading-tight text-primary">{title}</h3>
+                    <p className="mt-3 text-sm leading-[1.85] text-body">{body}</p>
                   </div>
-                  <p className="mt-1 max-w-[50ch] text-sm leading-relaxed text-body">
-                    {body}
-                  </p>
-                </div>
-              </motion.li>
-            ))}
-          </ol>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+              <a href="#kontak" className="btn btn-primary">Buat janji konsultasi</a>
+              <a href="#dokumen" className="text-link inline-flex min-h-11 items-center text-sm font-medium text-primary">
+                Lihat checklist dokumen
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,94 +1,53 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { photos } from '../lib/photos';
 
 const certifications = [
-  { icon: 'ph:seal-check', label: 'Diangkat Menkumham RI (SK No. AHU-XXX/2012)' },
+  { icon: 'ph:certificate', label: 'Diangkat Menkumham RI — SK No. AHU-XXX/2012' },
   { icon: 'ph:buildings', label: 'Anggota Ikatan Notaris Indonesia (INI)' },
-  { icon: 'ph:graduation-cap', label: 'S2 Magister Kenotariatan, Universitas Indonesia' },
-  { icon: 'ph:briefcase', label: 'Pengalaman 12+ tahun praktik' },
+  { icon: 'ph:graduation-cap', label: 'Magister Kenotariatan, Universitas Indonesia' },
+  { icon: 'ph:briefcase', label: 'Lebih dari 12 tahun praktik kenotariatan' },
 ];
-
 const team = [
-  {
-    name: 'Andi Pranata, S.H., M.Kn.',
-    role: 'Notaris & PPAT',
-    photoId: '1718209881007-c0ecdfc00f9d',
-  },
-  {
-    name: 'Tika Hartono, S.H., M.Kn.',
-    role: 'Partner Notaris (bergabung 2020)',
-    photoId: '1662104935883-e9dd0619eaba',
-  },
-  {
-    name: 'Reza Wijaya, S.H.',
-    role: 'Senior Legal Staff',
-    photoId: '1601489664830-d9c5fd91fb00',
-  },
+  { name: 'Andi Pranata, S.H., M.Kn.', role: 'Notaris & PPAT', photo: photos.portraitAndi },
+  { name: 'Tika Hartono, S.H., M.Kn.', role: 'Partner Notaris · bergabung 2020', photo: photos.portraitTika },
+  { name: 'Reza Wijaya, S.H.', role: 'Senior Legal Staff', photo: photos.portraitReza },
 ];
 ---
 
-<section id="tentang" class="bg-canvas py-section">
-  <div class="mx-auto max-w-7xl px-6">
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
-      <div class="relative aspect-[3/4] overflow-hidden rounded-sm">
-        <img
-          src="https://images.unsplash.com/photo-1571055931484-22dce9d6c510?w=900&h=1200&fit=crop&crop=focalpoint&fp-x=0.22&fp-y=0.5&fp-z=1.25&q=80&auto=format"
-          alt="Interior Kantor Notaris Pranata & Partners"
-          class="h-full w-full object-cover"
-          width="900"
-          height="1200"
-          loading="lazy"
-        />
-      </div>
-
-      <div>
-        <h2 class="section-heading">Tentang Kami</h2>
-        <p class="mt-6 max-w-[65ch] text-base leading-relaxed text-body">
-          Kantor Notaris Pranata &amp; Partners didirikan oleh Bapak Andi
-          Pranata, S.H., M.Kn., notaris dengan pengalaman lebih dari 12 tahun
-          yang diangkat oleh Kementerian Hukum dan HAM RI pada tahun 2012.
-          Kantor kami melayani Jakarta Selatan dan sekitarnya, dengan
-          spesialisasi dalam akta keluarga, properti, dan korporasi.
-        </p>
-
-        <ul class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {
-            certifications.map((cert) => (
-              <li class="flex items-start gap-3">
-                <Icon name={cert.icon} class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
-                <span class="text-sm text-ink">{cert.label}</span>
-              </li>
-            ))
-          }
+<section id="tentang" class="section-space border-t border-hairline">
+  <div class="section-shell">
+    <div class="about-grid">
+      <figure class="about-photo">
+        <img src={photos.office} srcset={`${photos.office.replace('.webp', '-small.webp')} 640w, ${photos.office} 1400w`} sizes="(max-width: 640px) calc(100vw - 40px), 48vw" width="1400" height="934" alt="Ilustrasi ruang pertemuan profesional dengan meja kayu dan cahaya alami" loading="lazy" />
+        <p>Setiap keputusan penting layak mendapat perhatian penuh.</p>
+        <figcaption class="photo-caption">Foto suasana ilustratif · bukan kantor sebenarnya.</figcaption>
+      </figure>
+      <div class="about-copy">
+        <h2 class="section-heading">Ketelitian hukum.<br />Pendekatan yang personal.</h2>
+        <p class="section-lead">Kantor Notaris Pranata &amp; Partners didirikan oleh Andi Pranata, S.H., M.Kn., pada tahun 2012. Kami melayani Jakarta Selatan dan sekitarnya, dengan perhatian khusus pada akta keluarga, properti, dan korporasi.</p>
+        <p class="section-lead">Dari konsultasi pertama hingga penyerahan akta, kebutuhan Anda menjadi dasar setiap penjelasan, persiapan, dan langkah yang kami tempuh.</p>
+        <ul class="certifications">
+          {certifications.map((cert) => <li><Icon name={cert.icon} class="mt-1 h-4 w-4 shrink-0 text-accent-gold" /><span>{cert.label}</span></li>)}
         </ul>
+        <p class="photo-caption">Profil &amp; kredensial di atas adalah contoh untuk proyek portofolio, belum terverifikasi.</p>
+        <a href="#kontak" class="text-link mt-5">Mari bicarakan kebutuhan Anda <Icon name="ph:arrow-right" class="h-4 w-4" /></a>
       </div>
     </div>
-
-    <div class="mt-20">
-      <h3 class="font-display text-2xl text-ink">Tim Kami</h3>
-      <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
-        {
-          team.map((member) => (
-            <div>
-              <div class="aspect-[3/4] overflow-hidden rounded-sm">
-                <img
-                  src={`https://images.unsplash.com/photo-${member.photoId}?w=600&h=800&fit=crop&crop=faces&q=80&auto=format`}
-                  alt={member.name}
-                  class="h-full w-full object-cover"
-                  width="600"
-                  height="800"
-                  loading="lazy"
-                />
-              </div>
-              <p class="mt-4 font-display text-lg text-ink">{member.name}</p>
-              <p class="text-sm text-body">{member.role}</p>
-            </div>
-          ))
-        }
+    <div class="team-section">
+      <div class="team-intro">
+        <h3>Orang di balik setiap akta.</h3>
+        <p>Tim notaris dan legal, didukung 4 staf administratif untuk kelancaran proses. Nama, profil, dan potret berikut merupakan ilustrasi proyek.</p>
       </div>
-      <p class="mt-6 text-sm text-body">
-        Didukung oleh 4 staf administratif untuk kelancaran proses akta Anda.
-      </p>
+      <div class="team-grid">
+        {team.map((member) => (
+          <article>
+            <img src={member.photo} srcset={`${member.photo.replace('.webp', '-small.webp')} 640w, ${member.photo} 800w`} sizes="(max-width: 640px) calc(100vw - 40px), 30vw" width="800" height="1200" loading="lazy" alt={`Foto stock untuk ilustrasi profil ${member.name}, bukan potret orang yang bersangkutan`} />
+            <h4>{member.name}</h4>
+            <p class="team-role">{member.role}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </div>
 </section>

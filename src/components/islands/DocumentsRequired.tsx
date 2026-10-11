@@ -1,7 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { CheckCircleIcon } from '@phosphor-icons/react';
-import { staggerContainer, fadeUp } from '../../lib/motion';
+import { useRef, useState, type KeyboardEvent } from 'react';
+import { CheckIcon, ArrowRightIcon } from '@phosphor-icons/react';
 
 const tabs = [
   {
@@ -55,62 +53,105 @@ const tabs = [
 ];
 
 export default function DocumentsRequired() {
-  const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  function handleTabKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    let next = index;
+    switch (event.key) {
+      case 'ArrowDown':
+      case 'ArrowRight':
+        next = (index + 1) % tabs.length;
+        break;
+      case 'ArrowUp':
+      case 'ArrowLeft':
+        next = (index - 1 + tabs.length) % tabs.length;
+        break;
+      case 'Home':
+        next = 0;
+        break;
+      case 'End':
+        next = tabs.length - 1;
+        break;
+      default:
+        return;
+    }
+    event.preventDefault();
+    setActive(next);
+    tabRefs.current[next]?.focus();
+  }
 
   return (
-    <section className="bg-canvas py-section">
-      <div className="mx-auto max-w-4xl px-6">
-        <h2 className="section-heading">
-          Dokumen Yang Perlu Disiapkan
-        </h2>
-        <p className="mt-4 max-w-[60ch] text-base text-body">
-          Pilih layanan untuk lihat checklist dokumen yang spesifik.
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-2 rounded-sm bg-hairline p-1" role="tablist">
-          {tabs.map((tab, i) => (
-            <button
-              key={tab.label}
-              role="tab"
-              aria-selected={active === i}
-              onClick={() => setActive(i)}
-              className="relative rounded-xs px-4 py-2 font-sans text-sm font-medium text-ink"
-            >
-              {active === i && (
-                <motion.span
-                  layoutId="doc-tab-indicator"
-                  className="absolute inset-0 rounded-xs bg-canvas"
-                  transition={{ duration: reduce ? 0 : 0.3, ease: 'easeOut' }}
-                />
-              )}
-              <span className="relative">{tab.label}</span>
-            </button>
-          ))}
+    <section id="dokumen" className="section-space bg-canvas" aria-labelledby="documents-heading">
+      <div className="section-shell">
+        <div className="section-intro">
+          <h2 id="documents-heading" className="section-heading max-w-[15ch]">
+            Sebelum Anda membuat janji.
+          </h2>
+          <p className="section-lead max-w-[52ch]">
+            Mulai dari <a className="text-link" href="#layanan">layanan yang Anda perlukan</a>,
+            pelajari <a className="text-link" href="#biaya">referensi biaya indikatif</a>,
+            lalu siapkan dokumen sesuai checklist berikut agar konsultasi lebih terarah.
+          </p>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.ul
-            key={active}
-            initial={reduce ? false : 'hidden'}
-            animate="visible"
-            exit={{ opacity: 0 }}
-            variants={staggerContainer(0.05)}
-            className="mt-8 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2"
+        <div className="mt-12 grid gap-8 border-t border-hairline pt-8 lg:grid-cols-[280px_1fr] lg:gap-16">
+          <div
+            role="tablist"
+            aria-label="Checklist dokumen menurut layanan"
+            className="flex flex-wrap content-start gap-2 lg:flex-col lg:gap-0"
           >
-            {tabs[active].docs.map((doc) => (
-              <motion.li key={doc} variants={fadeUp} className="flex items-start gap-2">
-                <CheckCircleIcon
-                  size={18}
-                  weight="light"
-                  className="mt-0.5 shrink-0 text-accent-gold"
-                  aria-hidden="true"
-                />
-                <span className="text-sm text-ink">{doc}</span>
-              </motion.li>
+            {tabs.map((tab, i) => (
+              <button
+                key={tab.label}
+                type="button"
+                id={`documents-tab-${i}`}
+                role="tab"
+                aria-selected={active === i}
+                aria-controls={`documents-panel-${i}`}
+                tabIndex={active === i ? 0 : -1}
+                ref={(element) => { tabRefs.current[i] = element; }}
+                onKeyDown={(event) => handleTabKey(event, i)}
+                onClick={() => setActive(i)}
+                className={`flex min-h-12 items-center justify-between gap-4 border-b px-3 py-4 text-left text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary lg:px-0 lg:text-base ${
+                  active === i
+                    ? 'border-accent-gold text-primary'
+                    : 'border-hairline text-body hover:text-primary'
+                }`}
+              >
+                {tab.label}
+                <ArrowRightIcon size={18} weight="light" aria-hidden="true" className={active === i ? 'text-accent-gold' : 'invisible'} />
+              </button>
             ))}
-          </motion.ul>
-        </AnimatePresence>
+          </div>
+
+          <div>
+            {tabs.map((tab, i) => (
+              <div
+                key={tab.label}
+                id={`documents-panel-${i}`}
+                role="tabpanel"
+                aria-labelledby={`documents-tab-${i}`}
+                hidden={active !== i}
+                tabIndex={0}
+                className="focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-primary"
+              >
+                <h3 className="font-display text-3xl text-primary">{tab.label}</h3>
+                <ul className="mt-6 grid gap-x-10 gap-y-5 sm:grid-cols-2">
+                  {tab.docs.map((doc) => (
+                    <li key={doc} className="flex items-start gap-3 text-sm leading-7 text-ink">
+                      <CheckIcon size={18} weight="light" className="mt-1 shrink-0 text-accent-gold" aria-hidden="true" />
+                      <span>{doc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <p className="mt-8 border-t border-hairline pt-5 text-sm leading-7 text-body">
+              Checklist ini merupakan panduan persiapan. Kebutuhan dokumen dapat disesuaikan dengan kondisi para pihak saat konsultasi.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

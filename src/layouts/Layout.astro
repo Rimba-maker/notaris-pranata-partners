@@ -70,6 +70,7 @@ const schema = {
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="preload" href={`${import.meta.env.BASE_URL}fonts/bodoni-moda-regular.ttf`} as="font" type="font/ttf" crossorigin />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -84,7 +85,7 @@ const schema = {
     <meta property="og:description" content={description} />
     <meta
       property="og:image"
-      content="https://images.unsplash.com/photo-1664463760781-f159dfe3af30?w=1200&h=630&fit=crop&crop=entropy&q=80&auto=format"
+      content={new URL(`${import.meta.env.BASE_URL}images/signing.webp`, Astro.site).href}
     />
     <meta property="og:locale" content="id_ID" />
 

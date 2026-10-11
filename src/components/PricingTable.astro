@@ -33,58 +33,37 @@ const groups = [
 ];
 ---
 
-<section id="biaya" class="bg-canvas py-section">
-  <div class="mx-auto max-w-4xl px-6">
-    <h2 class="section-heading">Referensi Biaya</h2>
-    <p class="mt-4 max-w-[65ch] text-base text-body">
-      Biaya notaris diatur dalam UU No. 30/2004 dan Permenkumham, dengan
-      toleransi negosiasi sesuai kompleksitas. Berikut indikatif yang biasa
-      kami terapkan.
-    </p>
-
-    <div class="mt-10 overflow-x-auto">
-      <table class="w-full min-w-[480px] border-collapse">
+<section id="biaya" class="section-space bg-[#f5f6f6]">
+  <div class="section-shell pricing-layout">
+    <div class="pricing-intro">
+      <h2 class="section-heading">Kepastian dimulai<br />dari keterbukaan.</h2>
+      <p class="section-lead">Kenali referensi biaya sebelum membuat janji. Besaran akhir menyesuaikan jenis akta, nilai transaksi, dan kompleksitas kebutuhan Anda.</p>
+      <a href="#kontak" class="text-link">Minta estimasi untuk kebutuhan Anda</a>
+      <p class="pricing-note">Harga belum termasuk PNBP, pajak (PPh dan BPHTB jika ada), dan biaya pendaftaran pemerintah. Konsultasi awal gratis untuk estimasi yang lebih akurat. Angka berikut merupakan referensi ilustratif, bukan penawaran mengikat.</p>
+    </div>
+    <div>
+      <table class="pricing-table">
+        <caption>Referensi biaya layanan · nilai indikatif untuk proyek demo</caption>
         <thead>
-          <tr class="bg-hairline">
-            <th scope="col" class="px-3 py-2.5 text-left font-mono text-xs uppercase tracking-[0.08em] text-body">
-              Layanan
-            </th>
-            <th scope="col" class="px-3 py-2.5 text-left font-mono text-xs uppercase tracking-[0.08em] text-body">
-              Biaya Notaris
-            </th>
-            <th scope="col" class="px-3 py-2.5 text-left font-mono text-xs uppercase tracking-[0.08em] text-body">
-              Catatan
-            </th>
+          <tr>
+            <th scope="col">Layanan</th>
+            <th scope="col">Biaya Notaris</th>
+            <th scope="col">Catatan</th>
           </tr>
         </thead>
-        {
-          groups.map((group) => (
-            <tbody class="border-b border-hairline">
+        {groups.map((group) => (
+          <tbody>
+            <tr class="price-group"><th colspan={3} scope="colgroup">{group.cluster}</th></tr>
+            {group.rows.map((row) => (
               <tr>
-                <th
-                  colspan={3}
-                  scope="colgroup"
-                  class="px-3 pt-4 pb-1 text-left font-mono text-xs uppercase tracking-[0.08em] text-body"
-                >
-                  {group.cluster}
-                </th>
+                <td>{row.layanan}</td>
+                <td>{row.biaya}</td>
+                <td>{row.catatan || 'Sesuai kebutuhan akta'}</td>
               </tr>
-              {group.rows.map((row) => (
-                <tr class="border-t border-hairline">
-                  <td class="px-3 py-3 text-sm text-ink">{row.layanan}</td>
-                  <td class="px-3 py-3 font-display text-sm text-ink">{row.biaya}</td>
-                  <td class="px-3 py-3 text-sm text-body">{row.catatan}</td>
-                </tr>
-              ))}
-            </tbody>
-          ))
-        }
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
-
-    <p class="mt-8 text-sm text-body">
-      Harga belum termasuk PNBP, pajak (PPh dan BPHTB jika ada), dan biaya
-      pendaftaran pemerintah. Konsultasi gratis untuk estimasi akurat.
-    </p>
   </div>
 </section>

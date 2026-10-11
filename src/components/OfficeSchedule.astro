@@ -1,62 +1,40 @@
 ---
 import { Icon } from 'astro-icon/components';
-
+import { photos } from '../lib/photos';
 const hours = [
-  { day: 'Senin - Jumat', time: '09:00 - 17:00' },
-  { day: 'Sabtu', time: '09:00 - 13:00 (by appointment)' },
+  { day: 'Senin–Jumat', time: '09.00–17.00' },
+  { day: 'Sabtu', time: '09.00–13.00 · dengan janji' },
   { day: 'Minggu & libur nasional', time: 'Tutup' },
 ];
 ---
 
-<section class="bg-canvas py-section">
-  <div class="mx-auto max-w-7xl px-6">
-    <h2 class="section-heading">Lokasi &amp; Jam Buka</h2>
-
-    <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
-      <div>
-        <div class="flex items-start gap-3">
-          <Icon name="ph:map-pin" class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
-          <p class="text-base text-ink">
-            Jl. Kemang Selatan VIII No. 88, Jakarta Selatan
-          </p>
-        </div>
-
-        <div class="mt-6 flex items-start gap-3">
-          <Icon name="ph:clock" class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
-          <dl class="space-y-1.5">
-            {
-              hours.map((h) => (
-                <div class="flex gap-4 text-sm">
-                  <dt class="w-44 text-body">{h.day}</dt>
-                  <dd class="text-ink">{h.time}</dd>
-                </div>
-              ))
-            }
-          </dl>
-        </div>
-
-        <div class="mt-6 flex items-start gap-3">
-          <Icon name="ph:calendar-check" class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
-          <p class="text-sm text-body">
-            Janji temu disarankan sebelumnya untuk pelayanan optimal.
-          </p>
-        </div>
-
-        <div class="mt-6 flex items-start gap-3">
-          <Icon name="ph:car" class="mt-0.5 h-5 w-5 shrink-0 text-accent-gold" />
-          <p class="text-sm text-body">Tersedia area parkir di kantor.</p>
-        </div>
-      </div>
-
-      <div class="aspect-[4/3] overflow-hidden rounded-sm border border-hairline">
-        <iframe
-          title="Lokasi Kantor Notaris Pranata & Partners"
-          src="https://www.google.com/maps?q=Jl.+Kemang+Selatan+VIII+No.+88,+Jakarta+Selatan&output=embed"
-          class="h-full w-full"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </div>
+<section id="kantor" class="section-space bg-[#f5f6f6]">
+  <div class="section-shell">
+    <div class="section-intro">
+      <h2 class="section-heading">Ruang untuk membicarakan<br />hal-hal yang berarti.</h2>
+      <p class="section-lead">Konsultasi dan penandatanganan akta dilakukan dengan janji temu. Temukan lokasi, jadwal, dan informasi kunjungan Anda di sini.</p>
     </div>
+    <div class="office-gallery">
+      <figure>
+        <img src={photos.office} srcset={`${photos.office.replace('.webp', '-small.webp')} 640w, ${photos.office} 1400w`} sizes="(max-width: 640px) calc(100vw - 40px), 58vw" alt="Ilustrasi ruang konsultasi dengan meja kayu dan pencahayaan alami" width="1400" height="934" loading="lazy" />
+        <figcaption class="photo-caption">Suasana ruang konsultasi · foto stock ilustratif oleh Capture Crew.</figcaption>
+      </figure>
+      <figure>
+        <img src={photos.officeWide} srcset={`${photos.officeWide.replace('.webp', '-small.webp')} 640w, ${photos.officeWide} 1400w`} sizes="(max-width: 640px) calc(100vw - 40px), 38vw" alt="Ilustrasi interior ruang pertemuan profesional" width="1400" height="1750" loading="lazy" />
+        <figcaption class="photo-caption">Detail ruang pertemuan · bukan foto kantor sebenarnya.</figcaption>
+      </figure>
+    </div>
+    <div class="office-information">
+      <div>
+        <p class="office-address">Jl. Kemang Selatan VIII No. 88,<br />Jakarta Selatan.</p>
+        <p class="office-small">Janji temu disarankan untuk pelayanan optimal. Tersedia area parkir di kantor.</p>
+        <a href="#kontak" class="text-link mt-4">Rencanakan kunjungan Anda <Icon name="ph:arrow-right" class="h-4 w-4" /></a>
+        <p class="photo-caption">Alamat dan fasilitas merupakan data contoh proyek portofolio.</p>
+      </div>
+      <dl class="office-hours">
+        {hours.map((hour) => <div><dt>{hour.day}</dt><dd>{hour.time}</dd></div>)}
+      </dl>
+    </div>
+    <iframe title="Peta alamat ilustratif di Kemang, Jakarta Selatan" src="https://www.google.com/maps?q=Jl.+Kemang+Selatan+VIII+No.+88,+Jakarta+Selatan&output=embed" class="office-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </section>

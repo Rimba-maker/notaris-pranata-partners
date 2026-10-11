@@ -1,39 +1,30 @@
-import { motion, useReducedMotion } from 'motion/react';
-import { SealCheckIcon, BuildingsIcon, ClockIcon, FilesIcon } from '@phosphor-icons/react';
-import { staggerContainer, fadeUp } from '../../lib/motion';
-
 const badges = [
-  { icon: SealCheckIcon, label: 'Diangkat Menkumham RI' },
-  { icon: BuildingsIcon, label: 'Anggota INI (Ikatan Notaris Indonesia)' },
-  { icon: ClockIcon, label: '12+ Tahun Pengalaman' },
-  { icon: FilesIcon, label: '5.000+ Akta Terbit' },
+  'Diangkat Menkumham RI',
+  'Anggota INI (Ikatan Notaris Indonesia)',
+  '12+ Tahun Pengalaman',
+  '5.000+ Akta Terbit',
 ];
 
 export default function CredentialsBand() {
-  const reduce = useReducedMotion();
-
   return (
-    <section className="bg-canvas-dark py-16">
-      <motion.div
-        initial={reduce ? false : 'hidden'}
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.4 }}
-        variants={staggerContainer(0.08)}
-        className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-6 md:grid-cols-4"
-      >
-        {badges.map(({ icon: Icon, label }) => (
-          <motion.div
-            key={label}
-            variants={fadeUp}
-            className="flex flex-col items-center gap-3 rounded-sm border border-surface-dark-soft px-4 py-6 text-center"
-          >
-            <Icon size={28} weight="light" color="#B08D3E" aria-hidden="true" />
-            <p className="font-mono text-xs uppercase tracking-[0.08em] text-on-dark">
+    <section className="border-y border-hairline bg-canvas py-8" aria-label="Contoh kredensial kantor untuk demonstrasi">
+      <div className="section-shell">
+        <ul className="grid grid-cols-1 divide-y divide-hairline sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
+          {badges.map((label, i) => (
+            <li
+              key={label}
+              className={`flex min-h-20 items-center py-5 text-sm font-medium leading-6 text-primary sm:px-6 lg:py-2 ${
+                i > 0 ? 'lg:border-l lg:border-hairline' : 'sm:pl-0'
+              } ${i % 2 === 1 ? 'sm:border-l sm:border-hairline' : ''}`}
+            >
               {label}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-xs leading-6 text-body">
+          Kredensial ilustratif untuk situs demo; pengangkatan, keanggotaan, pengalaman, dan jumlah akta tidak terverifikasi.
+        </p>
+      </div>
     </section>
   );
 }

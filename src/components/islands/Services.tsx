@@ -1,19 +1,7 @@
-import { motion, useReducedMotion } from 'motion/react';
-import {
-  HouseIcon,
-  HeartIcon,
-  BuildingsIcon,
-  HandshakeIcon,
-  CoinsIcon,
-  StampIcon,
-  GlobeIcon,
-  ScrollIcon,
-} from '@phosphor-icons/react';
-import { staggerContainer, fadeUp } from '../../lib/motion';
+import { photos } from '../../lib/photos';
 
 const services = [
   {
-    icon: HouseIcon,
     title: 'Akta Tanah & Properti',
     items: [
       'AJB (Akta Jual Beli)',
@@ -25,7 +13,6 @@ const services = [
     ],
   },
   {
-    icon: HeartIcon,
     title: 'Akta Keluarga',
     items: [
       'Perjanjian Pranikah',
@@ -36,7 +23,6 @@ const services = [
     ],
   },
   {
-    icon: BuildingsIcon,
     title: 'Akta Perusahaan & Bisnis',
     items: [
       'Pendirian PT / CV',
@@ -47,7 +33,6 @@ const services = [
     ],
   },
   {
-    icon: HandshakeIcon,
     title: 'Akta Perjanjian Bisnis',
     items: [
       'Perjanjian Kerja Sama',
@@ -58,7 +43,6 @@ const services = [
     ],
   },
   {
-    icon: CoinsIcon,
     title: 'Akta Keuangan & Hutang',
     items: [
       'Akta Pengakuan Hutang',
@@ -68,7 +52,6 @@ const services = [
     ],
   },
   {
-    icon: StampIcon,
     title: 'Legalisasi & Waarmerking',
     items: [
       'Legalisasi tanda tangan',
@@ -77,7 +60,6 @@ const services = [
     ],
   },
   {
-    icon: GlobeIcon,
     title: 'Pengurusan & Pendaftaran',
     items: [
       'Pendaftaran AHU (Online)',
@@ -87,7 +69,6 @@ const services = [
     ],
   },
   {
-    icon: ScrollIcon,
     title: 'Akta Wasiat & Hibah',
     items: [
       'Akta Wasiat',
@@ -98,45 +79,85 @@ const services = [
   },
 ];
 
+const servicePhotos = [
+  { src: photos.property, height: 2101, alt: 'Ilustrasi stok bangunan hunian untuk kebutuhan akta properti.' },
+  { src: photos.rings, height: 931, alt: 'Ilustrasi stok cincin pernikahan untuk perencanaan hukum keluarga.' },
+  { src: photos.business, height: 943, alt: 'Ilustrasi stok kegiatan bisnis untuk kebutuhan akta perusahaan.' },
+  { src: photos.consultation, height: 934, alt: 'Ilustrasi stok diskusi profesional untuk perjanjian kerja sama.' },
+  { src: photos.review, height: 935, alt: 'Ilustrasi stok peninjauan dokumen untuk perjanjian keuangan.' },
+  { src: photos.signing, height: 934, alt: 'Ilustrasi stok penandatanganan dokumen, bukan proses legalisasi di kantor ini.' },
+  { src: photos.papers, height: 935, alt: 'Ilustrasi stok berkas untuk kebutuhan pengurusan dan pendaftaran.' },
+  { src: photos.detail, height: 934, alt: 'Ilustrasi stok detail dokumen untuk perencanaan wasiat dan hibah.' },
+];
+
 export default function Services() {
-  const reduce = useReducedMotion();
-
   return (
-    <section id="layanan" className="bg-canvas py-section">
-      <div className="mx-auto max-w-7xl px-6">
-        <h2 className="section-heading">
-          Layanan Kami
-        </h2>
-        <p className="mt-4 max-w-[60ch] text-base text-body">
-          Pembuatan akta otentik dan layanan kenotariatan lengkap.
-        </p>
+    <section id="layanan" className="section-space bg-canvas" aria-labelledby="services-heading">
+      <div className="section-shell">
+        <div className="section-intro">
+          <h2 id="services-heading" className="section-heading">Layanan Kami</h2>
+          <p className="section-lead max-w-[48ch]">
+            Pembuatan akta otentik dan layanan kenotariatan lengkap.
+            Temukan layanan yang sesuai dengan kebutuhan pribadi, keluarga, maupun bisnis Anda.
+          </p>
+        </div>
 
-        <motion.div
-          initial={reduce ? false : 'hidden'}
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={staggerContainer(0.06)}
-          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {services.map(({ icon: Icon, title, items }) => (
-            <motion.div
-              key={title}
-              variants={fadeUp}
-              whileHover={reduce ? undefined : { y: -4 }}
-              className="rounded-sm border border-hairline p-6 transition-colors hover:border-accent-gold"
-            >
-              <Icon size={28} weight="light" className="text-accent-gold" aria-hidden="true" />
-              <h3 className="mt-4 font-display text-lg text-ink">{title}</h3>
-              <ul className="mt-3 space-y-1.5">
-                {items.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-body">
-                    {item}
-                  </li>
-                ))}
+        <div className="mt-12 grid gap-x-12 gap-y-14 md:grid-cols-2">
+          {services.slice(0, 2).map(({ title, items }, index) => (
+            <article key={title}>
+              <div className="overflow-hidden">
+                <img
+                  src={servicePhotos[index].src}
+                  srcSet={`${servicePhotos[index].src.replace('.webp', '-small.webp')} 640w, ${servicePhotos[index].src} 1400w`}
+                  sizes="(max-width: 768px) calc(100vw - 40px), 46vw"
+                  alt={servicePhotos[index].alt}
+                  width={1400}
+                  height={servicePhotos[index].height}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[16/10] w-full object-cover"
+                />
+              </div>
+              <h3 className="mt-7 font-display text-[30px] leading-tight text-primary md:text-[36px]">
+                {title}
+              </h3>
+              <ul className="mt-5 grid gap-x-6 gap-y-2 text-sm leading-relaxed text-body sm:grid-cols-2">
+                {items.map((item) => <li key={item}>{item}</li>)}
               </ul>
-            </motion.div>
+              <a href="#kontak" data-service={title} className="text-link mt-6 inline-flex min-h-11 items-center text-sm font-medium text-primary">
+                Konsultasikan {title.toLowerCase()}
+              </a>
+            </article>
           ))}
-        </motion.div>
+        </div>
+
+        <div className="mt-16 grid gap-x-12 md:grid-cols-2">
+          {services.slice(2).map(({ title, items }, index) => (
+            <article key={title} className="grid grid-cols-[80px_minmax(0,1fr)] gap-5 border-t border-hairline py-8 sm:grid-cols-[112px_minmax(0,1fr)] sm:gap-6">
+              <img
+                src={servicePhotos[index + 2].src}
+                srcSet={`${servicePhotos[index + 2].src.replace('.webp', '-small.webp')} 640w, ${servicePhotos[index + 2].src} 1400w`}
+                sizes="112px"
+                alt={servicePhotos[index + 2].alt}
+                width={1400}
+                height={servicePhotos[index + 2].height}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/5] w-full object-cover"
+              />
+              <div>
+                <h3 className="font-display text-[25px] leading-tight text-primary">{title}</h3>
+                <ul className="mt-4 space-y-1.5 text-sm leading-relaxed text-body">
+                  {items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+                <a href="#kontak" data-service={title} className="text-link mt-4 inline-flex min-h-11 items-center text-sm font-medium text-primary" aria-label={`Konsultasikan ${title}`}>
+                  Konsultasikan layanan
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p className="mt-6 text-xs leading-relaxed text-body">Fotografi merupakan ilustrasi stok, bukan dokumentasi layanan atau klien kantor.</p>
       </div>
     </section>
   );

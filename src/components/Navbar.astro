@@ -2,130 +2,64 @@
 import { Icon } from 'astro-icon/components';
 
 const links = [
-  { href: '#tentang', label: 'Tentang' },
+  { href: '#tentang', label: 'Tentang Kami' },
   { href: '#layanan', label: 'Layanan' },
-  { href: '#biaya', label: 'Biaya' },
+  { href: '#biaya', label: 'Referensi Biaya' },
   { href: '#tata-cara', label: 'Tata Cara' },
-  { href: '#kontak', label: 'Kontak' },
+  { href: '#kantor', label: 'Kantor' },
 ];
 ---
 
-<header
-  id="site-nav"
-  data-scrolled="false"
-  class="fixed inset-x-0 top-0 z-50 h-16 border-b border-transparent bg-canvas-dark transition-colors duration-300 data-[scrolled=true]:bg-canvas data-[scrolled=true]:border-hairline"
->
-  <div class="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
-    <a href="#" class="flex items-center gap-2 font-display text-lg text-on-dark [[data-scrolled=true]_&]:text-ink">
-      <span
-        class="flex h-8 w-8 items-center justify-center rounded-full bg-primary font-display text-xs text-accent-gold"
-        aria-hidden="true"
-      >
-        P&amp;P
-      </span>
-      <span>Pranata &amp; Partners</span>
+<a href="#main-content" class="skip-link">Lewati ke konten utama</a>
+<div class="utility-bar">
+  <div class="section-shell utility-inner">
+    <p>Website portofolio · Profil &amp; foto bersifat ilustratif</p>
+    <p class="utility-hours">Jakarta Selatan <span aria-hidden="true">&nbsp; / &nbsp;</span> Senin–Jumat, 09.00–17.00</p>
+  </div>
+</div>
+<header class="site-header" id="site-nav">
+  <div class="section-shell nav-inner">
+    <a href="#hero" class="brand" aria-label="Pranata & Partners — beranda">
+      <span class="brand-mark" aria-hidden="true">P&amp;P</span>
+      <span><span class="brand-name">Pranata &amp; Partners</span><span class="brand-description">Kantor Notaris &amp; PPAT</span></span>
     </a>
-
-    <nav class="hidden items-center gap-8 md:flex" aria-label="Navigasi utama">
-      {
-        links.map((link) => (
-          <a
-            href={link.href}
-            class="font-sans text-sm text-on-dark transition-opacity hover:opacity-70 [[data-scrolled=true]_&]:text-ink"
-          >
-            {link.label}
-          </a>
-        ))
-      }
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
-
-    <div class="flex items-center gap-3">
-      <a
-        href="#kontak"
-        id="nav-cta"
-        class="rounded-sm bg-canvas px-6 py-2 mono-caps-button text-ink transition-colors data-[scrolled=true]:bg-primary data-[scrolled=true]:text-on-primary"
-        data-scrolled="false"
-      >
-        Buat Janji
-      </a>
-
-      <button
-        id="nav-menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="nav-menu-drawer"
-        aria-label="Buka menu navigasi"
-        class="flex h-9 w-9 items-center justify-center text-on-dark md:hidden [[data-scrolled=true]_&]:text-ink"
-      >
+    <div class="nav-actions">
+      <a href="#kontak" class="btn btn-primary">Buat Janji <Icon name="ph:arrow-up-right" class="h-4 w-4" /></a>
+      <button id="nav-menu-toggle" type="button" class="menu-toggle" aria-expanded="false" aria-controls="nav-menu-drawer" aria-label="Buka menu navigasi">
         <Icon name="ph:list" id="nav-menu-icon-open" class="h-6 w-6" />
         <Icon name="ph:x" id="nav-menu-icon-close" class="hidden h-6 w-6" />
       </button>
     </div>
   </div>
-
-  <nav
-    id="nav-menu-drawer"
-    aria-label="Navigasi mobile"
-    class="fixed inset-0 top-16 hidden flex-col items-center justify-center gap-8 bg-canvas-dark md:hidden"
-  >
-    {
-      links.map((link) => (
-        <a
-          href={link.href}
-          data-nav-link
-          class="font-display text-2xl text-on-dark"
-        >
-          {link.label}
-        </a>
-      ))
-    }
+  <nav id="nav-menu-drawer" class="mobile-nav" aria-label="Navigasi mobile" hidden>
+    {links.map((link) => <a href={link.href} data-nav-link>{link.label}</a>)}
+    <a href="#kontak" data-nav-link>Kontak &amp; Konsultasi</a>
   </nav>
 </header>
 
 <script>
-  // Nav switches from dark (over the hero) to light once the hero band scrolls
-  // past the fixed nav's height — watches the hero section itself, no scroll listener.
-  const nav = document.getElementById('site-nav');
-  const cta = document.getElementById('nav-cta');
-  const hero = document.getElementById('hero');
-
-  if (nav && cta && hero) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const scrolled = String(!entry.isIntersecting);
-        nav.dataset.scrolled = scrolled;
-        cta.dataset.scrolled = scrolled;
-      },
-      { rootMargin: '-64px 0px 0px 0px', threshold: 0 }
-    );
-    observer.observe(hero);
-  }
-
-  // Mobile drawer: full-overlay menu, closes on link click or Escape.
   const toggle = document.getElementById('nav-menu-toggle');
   const drawer = document.getElementById('nav-menu-drawer');
-  const iconOpen = document.getElementById('nav-menu-icon-open');
-  const iconClose = document.getElementById('nav-menu-icon-close');
+  const openIcon = document.getElementById('nav-menu-icon-open');
+  const closeIcon = document.getElementById('nav-menu-icon-close');
 
-  function setDrawer(open: boolean) {
-    if (!toggle || !drawer || !iconOpen || !iconClose) return;
+  function setMenu(open: boolean, restoreFocus = false) {
+    if (!toggle || !drawer) return;
     toggle.setAttribute('aria-expanded', String(open));
-    drawer.classList.toggle('hidden', !open);
-    drawer.classList.toggle('flex', open);
-    iconOpen.classList.toggle('hidden', open);
-    iconClose.classList.toggle('hidden', !open);
-    document.body.classList.toggle('overflow-hidden', open);
+    toggle.setAttribute('aria-label', open ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+    drawer.hidden = !open;
+    openIcon?.classList.toggle('hidden', open);
+    closeIcon?.classList.toggle('hidden', !open);
+    if (restoreFocus) toggle.focus();
   }
-
-  toggle?.addEventListener('click', () => {
-    setDrawer(toggle.getAttribute('aria-expanded') !== 'true');
+  toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+  drawer?.querySelectorAll('[data-nav-link]').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') setMenu(false, true);
   });
-
-  drawer?.querySelectorAll('[data-nav-link]').forEach((link) => {
-    link.addEventListener('click', () => setDrawer(false));
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setDrawer(false);
-  });
+  const desktop = window.matchMedia('(min-width: 900px)');
+  desktop.addEventListener('change', (event) => { if (event.matches) setMenu(false); });
 </script>
