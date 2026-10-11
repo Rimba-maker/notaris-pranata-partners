@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.19.0"
   },
   "scripts": {
     "dev": "astro dev",
@@ -12,24 +12,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.2",
+    "@astrojs/react": "^6.0.6",
     "@fontsource/inter": "^5.3.0",
     "@iconify-json/ph": "^1.2.2",
     "@phosphor-icons/react": "^2.1.10",
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "astro": "^7.2.2",
-    "astro-icon": "^1.1.5",
+    "astro": "^7.2.8",
+    "astro-icon": "^1.2.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3"
   },
-  "allowScripts": {
-    "esbuild@0.28.2": true
-  },
+  "allowScripts": {},
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@types/node": "^22.20.5",
     "typescript": "^6.0.3"
   }
 }
