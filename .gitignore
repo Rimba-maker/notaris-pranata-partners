@@ -13,9 +13,16 @@ yarn-error.log*
 pnpm-debug.log*
 
 
-# environment variables
-.env
-.env.production
+# Environment variables and credentials
+.env*
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+/secrets/
+/credentials/
 
 # macOS-specific files
 .DS_Store
@@ -23,8 +30,18 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# internal-only docs — not for public repo (business/product strategy, design rationale)
-/139-jasa-notaris-PRD.md
-/DESIGN.md
-/PRODUCT.md
-/.impeccable/
+# Private documentation and local workspace
+/docs/
+/*.md
+!/README.md
+/.*
+!/.gitignore
+!/.github/
+!/.vscode/
+
+# Work metadata must not be published with website assets
+/public/**/*.webp.json
+
+# Local diagnostic artifacts
+*.log
+*.har
